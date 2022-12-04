@@ -1,3 +1,6 @@
+*{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 /*HEADER*/
 header{
     display: flex;
@@ -147,13 +150,13 @@ opacity: 100;
   margin:0px;
 }
 .contact-type{
-    width: 17%;
+    width: 20%;
     background-color: red;
    color: white;
    padding:5px 0px 5px 10px;
 }
 .contact-value{
-    width: 83%;
+    width: 80%;
     padding:5px 0px 5px 10px;
 
  margin: 0px;
@@ -172,3 +175,44 @@ opacity: 100;
 }
 
 /*END CONTENT*/
+
+
+/*MOBILE VERSION*/
+
+@media only screen and (max-width: 600px) {
+
+    header>div {
+        display:block;
+        margin-left: 20px;
+    }
+    .content{
+        display: block;
+        padding:10px;
+
+    }
+
+    .contacts{
+        margin-top: 0px;
+    }
+    .contact-type{
+        width:30%;
+    }
+    .contact-value{
+        width:70%;
+        background-color:white;
+    }
+    #contact > div > dl.contact.contact-skype > dd{
+        color:black;
+    }
+    
+        figure{
+            margin-left: 0px;
+        }
+    
+}
+
+
+
+
+
+/*END MOBILE VERSION*/
