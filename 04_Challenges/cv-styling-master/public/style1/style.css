@@ -1,0 +1,176 @@
+/*HEADER*/
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #999999;
+  padding: 20px 0px 20px 0px;
+}
+header>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 300px;
+}
+.hgroup{
+    width:50%
+}
+.figure{
+    width:50%;  
+}
+
+h1,h2{
+    color:red;
+}
+/*END HEADER/
+
+/*CONTENT*/
+h3{
+    font-size: 22px;
+}
+
+.content{
+    padding: 50px 300px 50px 300px;
+display: inline-grid;
+grid-template-columns: auto auto;
+}
+
+section>h3{
+   padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.295);
+
+}
+
+
+section>h3::before{
+    content: ' ';
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color: red;
+    margin-right:5px;
+ }
+
+
+
+ .skills-secondary{
+    padding-top: 15px;
+ }
+ .skills-primary::before{
+    content:'Main';
+    width: 21px;
+    height: 21px;
+ }
+ .skills-secondary::before{
+    content:'Other';
+    width: 21px;
+    height: 21px;
+ }
+
+ .skill{
+    margin:5px 0px;
+    padding:7px;
+    background-color: #999999e3;
+}
+
+
+
+.skill span{
+    height: 26px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    color: white;
+    z-index: 1;
+   
+    margin-left: 10px;
+    position: relative;
+   
+}
+.skill span::after{
+    content: '';
+    height: 26px;
+    background-color: red;
+    position: absolute;
+margin-left: -10px;
+}
+[data-skill="5"] span::after {
+    width: 50%;
+    z-index: -1;
+}
+[data-skill="3"] span::after {
+    width: 30%;
+    z-index: -1;
+}
+[data-skill="1"] span::after {
+    width: 10%;
+    z-index: -1;
+}
+[data-skill="9"] span::after {
+    width: 90%;
+    z-index: -1;
+}
+[data-skill="7"] span::after {
+    width: 70%;
+    z-index: -1;
+}
+#competencies > div.skills.skills-secondary > div{
+    opacity: 0.5;
+}
+
+
+
+
+ .experience-type,.experience-institution{
+color:red;
+ }
+ .experience-institution::before{
+    content: '@ ';
+ }
+ .experience-date,.experience-location{
+    color: #999999;
+ }
+ .experience-date-separator{
+color: red;
+opacity: 100;
+ }
+ .experience-date::before{
+    content: 'on ';
+ }
+ .experience-location::before{
+    content: 'In ';
+
+ }
+
+.contact{
+    display: flex;
+    flex-direction: row;
+  margin:0px;
+}
+.contact-type{
+    width: 17%;
+    background-color: red;
+   color: white;
+   padding:5px 0px 5px 10px;
+}
+.contact-value{
+    width: 83%;
+    padding:5px 0px 5px 10px;
+
+ margin: 0px;
+ background-color: black;
+ color: red;
+}
+ a{
+    color:red;
+    text-decoration: none;
+ }
+ #contact > h3{
+    display: none;
+ }
+.contacts{
+   margin-top: -1070px;
+}
+
+/*END CONTENT*/
