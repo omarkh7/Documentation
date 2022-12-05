@@ -202,5 +202,39 @@ display: none;
 }
 
 
+@media only screen and (max-width: 600px) {
+body{
+    padding: 5px 20px 5px 20px;
+}
+figure>img{
+    display: none;
+}
+#competencies,#experiences,#education,#hobbies{
+    display: block;
+}
+#experiences>h3,#education>h3,#hobbies>h3,#competencies>h3{
+    border-bottom: 1px solid black;
+    border-right: none;
+    width:30%;
+}
 
+#competencies > div.skills.skills-primary{
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    column-gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+    }
+    #competencies > div.skills.skills-secondary{
+        display: grid;
+    grid-template-columns: auto auto auto ;
+    column-gap: 20px;
+    width: 100%;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    }
+#about>p{
+    width: 100%;
+}
+}
 
