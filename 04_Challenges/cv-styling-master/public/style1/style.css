@@ -208,6 +208,9 @@ opacity: 100;
         figure{
             margin-left: 0px;
         }
+        #contact > h3{
+            display: block;
+         }
     
 }
 
