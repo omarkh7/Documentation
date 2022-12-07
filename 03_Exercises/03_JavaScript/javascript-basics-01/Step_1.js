@@ -1,3 +1,3 @@
-const fname="Omar";
+var fname
 alert(fname);
 
