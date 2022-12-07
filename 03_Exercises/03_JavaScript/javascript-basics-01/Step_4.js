@@ -1,3 +1,4 @@
+
 function Person(){
     var fname= document.getElementById("name").value;
 var surname=document.getElementById("surname").value;
