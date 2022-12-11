@@ -19,3 +19,22 @@ Graduation TEXT
 10-INSERT INTO graduates (ID,Name,Age,Gender,Points)SELECT * FROM students WHERE ID=4;
 11-UPDATE graduates SET Graduation='08/09/2018' WHERE ID=4;
 12-DELETE FROM students WHERE ID=4;
+
+Joins:
+
+14-
+SELECT e.ID, e.Name, e.Company,c.Date
+FROM employees e
+INNER JOIN companies c ON e.Company=c.Name
+
+15-
+SELECT e.Name
+FROM employees e
+INNER JOIN companies c ON e.Company=c.Name
+WHERE Date<2000
+
+16-
+SELECT e.Company
+FROM employees e
+INNER JOIN companies c ON e.Company=c.Name
+WHERE Role='Graphic Designer'
