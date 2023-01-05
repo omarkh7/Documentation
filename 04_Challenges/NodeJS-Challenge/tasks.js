@@ -82,7 +82,8 @@ function quit() {
  * @returns {void}
  */
 function help() {
-  console.log("\nEnter hello to print hello!\n");
+  console.log("\nEnter hello to print hello! ");
+  console.log("\nEnter hello + 'text 'to print hello 'text' ! \n");
   console.log("Enter quit or exit to exit the application\n");
 }
 
