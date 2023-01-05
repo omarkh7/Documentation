@@ -74,6 +74,7 @@ function quit() {
   process.exit();
 }
 
+//help to user to go into the app 
 /**
  * Help
  *
