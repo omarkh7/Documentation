@@ -51,7 +51,7 @@ function onDataReceived(text) {
   } else if (text === "help\n") {
     help();
 
-    //  Remove
+    // Remove
   } else if (text === "remove\n") {
     tasks.splice(-1);
     console.log(
@@ -59,12 +59,12 @@ function onDataReceived(text) {
     );
   } else if (text.substring(0, 6) === "remove") {
     Remove(text.replace("\n", "").substring(7));
-   
   }
 
   // List
   else if (text === "list\n") {
     List();
+
     // Add
   } else if (text === "add\n") {
     console.log("Error Please add a task");
@@ -139,7 +139,9 @@ function Add(addedtext) {
 
 function Remove(removetask) {
   if (removetask > tasks.length) {
-    console.log(`This task do not exist, remove another task in your list from 1 to ${tasks.length}`);
+    console.log(
+      `This task do not exist, remove another task in your list from 1 to ${tasks.length}`
+    );
   } else {
     tasks.splice(removetask - 1, 1);
     console.log(
