@@ -36,10 +36,12 @@ function onDataReceived(text) {
   console.log("");
   if (text === "quit\n" || text === "exit\n") {
     quit();
-  } else if (text.substring(0,5) === "hello") {
-    hello(text.replace('\n', '').substring(5).split(" "));
+  } else if (text.substring(0, 5) === "hello") {
+    hello(text.replace("\n", "").substring(5).split(" "));
   } else if (text === "help\n") {
     help();
+  } else if (text === "list\n") {
+    List();
   } else {
     unknownCommand(text);
   }
@@ -73,6 +75,17 @@ function hello(text2) {
 function quit() {
   console.log("Quitting now, goodbye!");
   process.exit();
+}
+/**
+ *List
+ *
+ * @returns {void}
+ */
+function List() {
+  let tasks = ["","Prepare my breakfast", "Studying Reactjs and node js", "going to workout in the gym"];
+  for (i = 1; i < tasks.length; i++) {
+    console.log(i + "-" + tasks[i]);
+  }
 }
 
 //help to user to go into the app
