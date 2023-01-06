@@ -34,31 +34,38 @@ function startApp(name) {
  */
 function onDataReceived(text) {
   console.log("");
+
+  // Quit and Exit
   if (text === "quit\n" || text === "exit\n") {
     quit();
+
+    // Back
   } else if (text === "back\n") {
     help();
+
+    // Hello
   } else if (text.substring(0, 5) === "hello") {
     hello(text.replace("\n", "").substring(5).split(" "));
+
+    // Help
   } else if (text === "help\n") {
     help();
+
+    //  Remove
   } else if (text === "remove\n") {
-    Remove();
+    tasks.splice(-1);
     console.log(
       "the last task has been removed, check your list by using --list-- command"
     );
-  } else if (text === "remove 1\n") {
-    Remove1();
-    console.log(
-      "the firts task has been removed, check your list by using --list-- command"
-    );
-  } else if (text === "remove 2\n") {
-    Remove2();
-    console.log(
-      "the second task has been removed, check your list by using --list-- command"
-    );
-  } else if (text === "list\n") {
+  } else if (text.substring(0, 6) === "remove") {
+    Remove(text.replace("\n", "").substring(7));
+   
+  }
+
+  // List
+  else if (text === "list\n") {
     List();
+    // Add
   } else if (text === "add\n") {
     console.log("Error Please add a task");
   } else if (text.substring(0, 3) === "add") {
@@ -101,7 +108,6 @@ function quit() {
   process.exit();
 }
 let tasks = [
-  "",
   "Prepare my breakfast",
   "Studying Reactjs and node js",
   "going to workout in the gym",
@@ -112,30 +118,34 @@ let tasks = [
  * @returns {void}
  */
 function List() {
-  console.log("Your Tasks are: ")
-  for (i = 1; i < tasks.length; i++) {
-    console.log(i + "-" + tasks[i]);
+  console.log("Your Tasks are: ");
+  for (i = 0; i < tasks.length; i++) {
+    console.log(i + 1 + "-" + tasks[i]);
   }
   console.log(
     "\na-You can Add more Tasks by usig the --add-- command + name of the Task"
   );
   console.log(
-    "b-You can Remove Tasks by using --remove 1-- for the first task, --remove 2-- for the second task, and --remove-- for the last task"
+    "b-You can Remove Tasks by using --remove-- + number of the task, or only --remove-- to remove the last task"
   );
   console.log("c-You can return back by using the --back-- command");
 }
-
+// add function
 function Add(addedtext) {
   tasks.push(addedtext);
 }
-function Remove() {
-  tasks.splice(-1);
-}
-function Remove1() {
-  tasks.splice(0, 1);
-}
-function Remove2() {
-  tasks.splice(2, 1);
+
+// remove function
+
+function Remove(removetask) {
+  if (removetask > tasks.length) {
+    console.log(`This task do not exist, remove another task in your list from 1 to ${tasks.length}`);
+  } else {
+    tasks.splice(removetask - 1, 1);
+    console.log(
+      `the task has been removed you still have  ${tasks.length} tasks to do, check your list by using --list-- command`
+    );
+  }
 }
 
 //help to user to go into the app
@@ -150,7 +160,6 @@ function help() {
   console.log("Use command --list-- to show all the tasks \n");
   console.log("Use command --quit-- or --exit-- to exit the application\n");
 }
-
 
 // The following line starts the application
 startApp("Omar Khankan");
