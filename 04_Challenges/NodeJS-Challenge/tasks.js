@@ -13,7 +13,7 @@ function startApp(name) {
   process.stdin.setEncoding("utf8");
   process.stdin.on("data", onDataReceived);
   console.log(`\nWelcome to ${name}'s application!`);
-  console.log("\nFor Help type help");
+  console.log("\nFor Help use the command --help--");
   console.log("--------------------");
 }
 
@@ -37,7 +37,7 @@ function onDataReceived(text) {
   if (text === "quit\n" || text === "exit\n") {
     quit();
   } else if (text === "back\n") {
-    Back();
+    help();
   } else if (text.substring(0, 5) === "hello") {
     hello(text.replace("\n", "").substring(5).split(" "));
   } else if (text === "help\n") {
@@ -145,13 +145,12 @@ function Remove2() {
  * @returns {void}
  */
 function help() {
-  console.log("\nEnter hello to print hello! ");
-  console.log("\nEnter hello + 'text 'to print hello 'text' ! \n");
-  console.log("Enter quit or exit to exit the application\n");
+  console.log("\nUse command --hello-- to print hello!\n");
+  console.log("Use command --hello-- + 'text 'to print hello 'text' ! \n");
+  console.log("Use command --list-- to show all the tasks \n");
+  console.log("Use command --quit-- or --exit-- to exit the application\n");
 }
 
-function Back() {
-  startApp("Omar Khankan");
-}
+
 // The following line starts the application
 startApp("Omar Khankan");
