@@ -36,12 +36,21 @@ function onDataReceived(text) {
   console.log("");
   if (text === "quit\n" || text === "exit\n") {
     quit();
+  }
+  else if (text === "back\n") {
+    Back();
   } else if (text.substring(0, 5) === "hello") {
     hello(text.replace("\n", "").substring(5).split(" "));
   } else if (text === "help\n") {
     help();
   } else if (text === "list\n") {
     List();
+  }
+  else if (text === "add\n") {
+    console.log("Error Please add a task")
+  }  else if (text.substring(0, 3) === "add") {
+    Add(text.replace("\n", "").substring(4));
+    console.log("task has been added, check your list by using --list-- command")
   } else {
     unknownCommand(text);
   }
@@ -76,16 +85,30 @@ function quit() {
   console.log("Quitting now, goodbye!");
   process.exit();
 }
+let tasks = [
+  "",
+  "Prepare my breakfast",
+  "Studying Reactjs and node js",
+  "going to workout in the gym",
+];
 /**
  *List
  *
  * @returns {void}
  */
 function List() {
-  let tasks = ["","Prepare my breakfast", "Studying Reactjs and node js", "going to workout in the gym"];
   for (i = 1; i < tasks.length; i++) {
     console.log(i + "-" + tasks[i]);
   }
+  console.log("\nYou can Add more Tasks by usig the --add-- command + name of the Task")
+  console.log("OR you can return back by using the --back-- command")
+
+}
+
+
+
+function Add(addedtext) {
+tasks.push(addedtext);
 }
 
 //help to user to go into the app
@@ -100,5 +123,8 @@ function help() {
   console.log("Enter quit or exit to exit the application\n");
 }
 
+function Back(){
+  startApp("Omar Khankan");
+}
 // The following line starts the application
 startApp("Omar Khankan");
