@@ -36,21 +36,36 @@ function onDataReceived(text) {
   console.log("");
   if (text === "quit\n" || text === "exit\n") {
     quit();
-  }
-  else if (text === "back\n") {
+  } else if (text === "back\n") {
     Back();
   } else if (text.substring(0, 5) === "hello") {
     hello(text.replace("\n", "").substring(5).split(" "));
   } else if (text === "help\n") {
     help();
+  } else if (text === "remove\n") {
+    Remove();
+    console.log(
+      "the last task has been removed, check your list by using --list-- command"
+    );
+  } else if (text === "remove 1\n") {
+    Remove1();
+    console.log(
+      "the firts task has been removed, check your list by using --list-- command"
+    );
+  } else if (text === "remove 2\n") {
+    Remove2();
+    console.log(
+      "the second task has been removed, check your list by using --list-- command"
+    );
   } else if (text === "list\n") {
     List();
-  }
-  else if (text === "add\n") {
-    console.log("Error Please add a task")
-  }  else if (text.substring(0, 3) === "add") {
+  } else if (text === "add\n") {
+    console.log("Error Please add a task");
+  } else if (text.substring(0, 3) === "add") {
     Add(text.replace("\n", "").substring(4));
-    console.log("task has been added, check your list by using --list-- command")
+    console.log(
+      "task has been added, check your list by using --list-- command"
+    );
   } else {
     unknownCommand(text);
   }
@@ -97,18 +112,30 @@ let tasks = [
  * @returns {void}
  */
 function List() {
+  console.log("Your Tasks are: ")
   for (i = 1; i < tasks.length; i++) {
     console.log(i + "-" + tasks[i]);
   }
-  console.log("\nYou can Add more Tasks by usig the --add-- command + name of the Task")
-  console.log("OR you can return back by using the --back-- command")
-
+  console.log(
+    "\na-You can Add more Tasks by usig the --add-- command + name of the Task"
+  );
+  console.log(
+    "b-You can Remove Tasks by using --remove 1-- for the first task, --remove 2-- for the second task, and --remove-- for the last task"
+  );
+  console.log("c-You can return back by using the --back-- command");
 }
 
-
-
 function Add(addedtext) {
-tasks.push(addedtext);
+  tasks.push(addedtext);
+}
+function Remove() {
+  tasks.splice(-1);
+}
+function Remove1() {
+  tasks.splice(0, 1);
+}
+function Remove2() {
+  tasks.splice(2, 1);
 }
 
 //help to user to go into the app
@@ -123,7 +150,7 @@ function help() {
   console.log("Enter quit or exit to exit the application\n");
 }
 
-function Back(){
+function Back() {
   startApp("Omar Khankan");
 }
 // The following line starts the application
