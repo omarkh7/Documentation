@@ -85,7 +85,9 @@ function onDataReceived(text) {
     } else {
       Edit(tasks.length, text.substring(5));
     }
-  } else {
+
+
+  }  else {
     unknownCommand(text);
   }
 }
@@ -132,7 +134,7 @@ let tasks = [
 function List() {
   console.log("Your Tasks are: ");
   for (i = 0; i < tasks.length; i++) {
-    console.log(i + 1 + "-" + tasks[i]);
+    console.log(i + 1 + "-" + tasksckeck[i] + " " + tasks[i]);
   }
   console.log(
     "\na-You can Add more Tasks by usig the --add-- command + name of the Task"
@@ -146,9 +148,20 @@ function List() {
 
   console.log("d-You can return back by using the --back-- command");
 }
+
+//taskcheck
+
+let tasksckeck = [];
+for (i = 0; i < tasks.length; i++) {
+  tasksckeck[i] = "[]";
+}
+
+
+
 // add function
 function Add(addedtext) {
   tasks.push(addedtext);
+  tasksckeck.push("[]");
 }
 
 // remove function

@@ -92,7 +92,7 @@ Now, we're going to grow the possibilities of the app a little.
   - <kbd>tip</kbd>: You're going to want to:
     - clean the text from the `endline` character `\n`, to make your life easier. Look into the string's `replace` method.
     - remove any additional space, look into the string's `trim` method.
-  - split your string into words. Look into string's `split` method.  - the first word is your comman
+  - split your string into words. Look into string's `split` method.  - the first word is your commane
   - if you feel things are getting complex, try doing a small example of what you're trying to achieve in isolation, in a new file or your browser's console.
 2. commit ("extended hello")  
 3. But, make it so if I write "hello" without anything, I still get "hello!". That is, if I write:
