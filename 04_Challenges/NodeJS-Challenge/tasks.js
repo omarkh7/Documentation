@@ -45,7 +45,7 @@ function onDataReceived(text) {
 
     // Hello
   } else if (text.substring(0, 5) === "hello") {
-    hello(text.replace("\n", "").substring(5).split(" "));
+    hello(text.replace("\n", "").substring(5).split(" ").join(" "));
 
     // Help
   } else if (text === "help\n") {
@@ -71,7 +71,7 @@ function onDataReceived(text) {
   } else if (text.substring(0, 3) === "add") {
     Add(text.replace("\n", "").substring(4));
     console.log(
-      "task has been added, check your list by using --list-- command"
+      `task has been added, now you have  check your list by using --list-- command`
     );
 
     // Edit
@@ -86,8 +86,16 @@ function onDataReceived(text) {
       Edit(tasks.length, text.substring(5));
     }
 
+    //check and uncheck
+  } else if (text === "check\n") {
+    console.log("Error Please Check a task");
+  } else if (text.substring(0, 5) === "check") {
+    check(text.trim().substring(5));
+  } else if (text.substring(0, 7) === "uncheck") {
+    uncheck(text.trim().substring(7));
 
-  }  else {
+    //unknown command
+  } else {
     unknownCommand(text);
   }
 }
@@ -136,6 +144,7 @@ function List() {
   for (i = 0; i < tasks.length; i++) {
     console.log(i + 1 + "-" + tasksckeck[i] + " " + tasks[i]);
   }
+  console.log("\n\nHelp:")
   console.log(
     "\na-You can Add more Tasks by usig the --add-- command + name of the Task"
   );
@@ -145,8 +154,11 @@ function List() {
   console.log(
     "c-You can Edit Tasks by using --edit-- command + 'number of the task' + updated text (task) or only --edit-- + edited task to edit the last task"
   );
+  console.log(
+    "d-You can Check/UnCheck Tasks by using --check-- / --uncheck-- commands + 'number of the task'  "
+  );
 
-  console.log("d-You can return back by using the --back-- command");
+  console.log("e-You can return back by using the --back-- command");
 }
 
 //taskcheck
@@ -156,7 +168,39 @@ for (i = 0; i < tasks.length; i++) {
   tasksckeck[i] = "[]";
 }
 
+//checked function
+function check(check) {
+  if (check > tasks.length) {
+    console.log(
+      `This task do not exist, check another task in your list from 1 to ${tasks.length}`
+    );
+  } else {
+    tasksckeck[Number(check - 1)] = tasksckeck[Number(check - 1)].replace(
+      "[]",
+      "[✓ ]"
+    );
+    console.log(
+      `the task has been Checked, check your list by using --list-- command`
+    );
+  }
+}
 
+//unchecked function
+function uncheck(uncheck) {
+  if (uncheck > tasks.length) {
+    console.log(
+      `This task do not exist, uncheck another task in your list from 1 to ${tasks.length}`
+    );
+  } else {
+    tasksckeck[Number(uncheck - 1)] = tasksckeck[Number(uncheck - 1)].replace(
+      "[✓ ]",
+      "[]"
+    );
+    console.log(
+      `the task has been Unchecked, check your list by using --list-- command`
+    );
+  }
+}
 
 // add function
 function Add(addedtext) {
@@ -201,7 +245,7 @@ function Edit(value, text) {
 function help() {
   console.log("\nUse command --hello-- to print hello!\n");
   console.log("Use command --hello-- + 'text 'to print hello 'text' ! \n");
-  console.log("Use command --list-- to show all the tasks \n");
+  console.log("Use command --list-- to show all the tasks and the list documentation \n");
   console.log("Use command --quit-- or --exit-- to exit the application\n");
 }
 
