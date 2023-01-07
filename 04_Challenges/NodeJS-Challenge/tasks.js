@@ -55,7 +55,7 @@ function onDataReceived(text) {
   } else if (text === "remove\n") {
     tasks.splice(-1);
     console.log(
-      "the last task has been removed, check your list by using --list-- command"
+      `the last task has been removed,you still have ${tasks.length} tasks; check your list by using --list-- command`
     );
   } else if (text.substring(0, 6) === "remove") {
     Remove(text.replace("\n", "").substring(7));
@@ -71,7 +71,7 @@ function onDataReceived(text) {
   } else if (text.substring(0, 3) === "add") {
     Add(text.replace("\n", "").substring(4));
     console.log(
-      `task has been added, now you have  check your list by using --list-- command`
+      `task has been added, now you have ${tasks.length} tasks to do; check your list by using --list-- command`
     );
 
     // Edit
@@ -180,7 +180,7 @@ function check(check) {
       "[✓ ]"
     );
     console.log(
-      `the task has been Checked, check your list by using --list-- command`
+      `the task is Checked, check your list by using --list-- command`
     );
   }
 }
@@ -197,7 +197,7 @@ function uncheck(uncheck) {
       "[]"
     );
     console.log(
-      `the task has been Unchecked, check your list by using --list-- command`
+      `the task is Unchecked, check your list by using --list-- command`
     );
   }
 }
@@ -218,7 +218,7 @@ function Remove(removetask) {
   } else {
     tasks.splice(removetask - 1, 1);
     console.log(
-      `the task has been removed you still have  ${tasks.length} tasks to do, check your list by using --list-- command`
+      `the task has is removed you still have  ${tasks.length} tasks to do, check your list by using --list-- command`
     );
   }
 }
@@ -231,7 +231,7 @@ function Edit(value, text) {
   } else {
     tasks[value - 1] = text;
     console.log(
-      `the task has been edited you still have  ${tasks.length} tasks to do, check your list by using --list-- command`
+      `the task is edited you still have  ${tasks.length} tasks to do, check your list by using --list-- command`
     );
   }
 }
