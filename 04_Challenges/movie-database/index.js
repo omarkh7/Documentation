@@ -85,6 +85,24 @@ app.get("/movies/get/by-title", (req, res) => {
   res.send({ status: 200, data: movies });
 });
 
+//Read One
+app.get("/movies/get/:id", (req, res) => {
+    const search = req.params.id;
+    const movie= movies.find(movie => movie.title===search);
+    if (movie) {
+      res.send({
+        status: 200,
+        data: movie,
+      });
+    } else {
+      res.status(404).send({
+        status: 404,
+        error: true,
+        message: `the movie ${search} does not exist`,
+      });
+    }
+  });
+
 app.listen(port, () => {
   console.log("ok");
 });
