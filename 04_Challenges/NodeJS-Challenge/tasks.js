@@ -73,6 +73,18 @@ function onDataReceived(text) {
     console.log(
       "task has been added, check your list by using --list-- command"
     );
+
+    // Edit
+  } else if (text === "edit\n") {
+    console.log("Error Please edit a task");
+  } else if (text.substring(0, 4) === "edit") {
+    let i = text.trim().split(" ");
+    if (!isNaN(i[1])) {
+      let j = i.splice(2).join(" ");
+      Edit(i[1], j);
+    } else {
+      Edit(tasks.length, text.substring(5));
+    }
   } else {
     unknownCommand(text);
   }
@@ -126,9 +138,13 @@ function List() {
     "\na-You can Add more Tasks by usig the --add-- command + name of the Task"
   );
   console.log(
-    "b-You can Remove Tasks by using --remove-- + number of the task, or only --remove-- to remove the last task"
+    "b-You can Remove Tasks by using --remove-- command+ number of the task, or only --remove-- to remove the last task"
   );
-  console.log("c-You can return back by using the --back-- command");
+  console.log(
+    "c-You can Edit Tasks by using --edit-- command + 'number of the task' + updated text (task) or only --edit-- + edited task to edit the last task"
+  );
+
+  console.log("d-You can return back by using the --back-- command");
 }
 // add function
 function Add(addedtext) {
@@ -146,6 +162,19 @@ function Remove(removetask) {
     tasks.splice(removetask - 1, 1);
     console.log(
       `the task has been removed you still have  ${tasks.length} tasks to do, check your list by using --list-- command`
+    );
+  }
+}
+// Edit Function
+function Edit(value, text) {
+  if (value > tasks.length) {
+    console.log(
+      `This task do not exist, edit another task in your list from 1 to ${tasks.length}`
+    );
+  } else {
+    tasks[value - 1] = text;
+    console.log(
+      `the task has been edited you still have  ${tasks.length} tasks to do, check your list by using --list-- command`
     );
   }
 }
