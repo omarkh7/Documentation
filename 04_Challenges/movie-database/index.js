@@ -50,9 +50,7 @@ app.get("/search", (req, res) => {
 });
 
 //Movies
-app.get("/movies/add", (req, res) => {
-  res.send({ status: 200, message: "" });
-});
+
 app.get("/movies/get", (req, res) => {
   res.send({ status: 200, data: movies });
 });
@@ -87,21 +85,62 @@ app.get("/movies/get/by-title", (req, res) => {
 
 //Read One
 app.get("/movies/get/:id", (req, res) => {
-    const search = req.params.id;
-    const movie= movies.find(movie => movie.title===search);
-    if (movie) {
-      res.send({
-        status: 200,
-        data: movie,
-      });
-    } else {
-      res.status(404).send({
-        status: 404,
+  const search = req.params.id;
+  const movie = movies.find((movie) => movie.title === search);
+  if (movie) {
+    res.send({
+      status: 200,
+      data: movie,
+    });
+  } else {
+    res.status(404).send({
+      status: 404,
+      error: true,
+      message: `the movie ${search} does not exist`,
+    });
+  }
+});
+
+//Create
+
+app.get("/movies/add", (req, res) => {
+  let title = req.query.title;
+  let year = parseInt(req.query.year);
+  let rating = parseInt(req.query.rating);
+  console.log(year);
+  if (title && year) {
+    if (!rating) {
+      rating = 4;
+    }
+    if (year < 1000) {
+      res.status(403).json({
+        status: 403,
         error: true,
-        message: `the movie ${search} does not exist`,
+        message: "Year is  not made of 4 digits",
       });
     }
-  });
+    if (year==='') {
+      res.status(403).json({
+        status: 403,
+        error: true,
+        message: "Year is  not a number",
+      });
+    }
+    const movie = { title, year, rating };
+    movies.push(movie);
+    res.json({
+      status: 200,
+      message: "Movie added successfully",
+      data: movie,
+    });
+  } else {
+    res.status(403).json({
+      status: 403,
+      error: true,
+      message: "you cannot create a movie without providing a title and a year",
+    });
+  }
+});
 
 app.listen(port, () => {
   console.log("ok");
