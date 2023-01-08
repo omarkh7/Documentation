@@ -54,10 +54,10 @@ app.get("/search", (req, res) => {
 app.get("/movies/get", (req, res) => {
   res.send({ status: 200, data: movies });
 });
-app.get("/movies/edit", (req, res) => {
+app.put("/movies/edit", (req, res) => {
   res.send({ status: 200, message: "" });
 });
-app.get("/movies/delete", (req, res) => {
+app.delete("/movies/delete", (req, res) => {
   res.send({ status: 200, message: "" });
 });
 //get by-date
@@ -103,7 +103,7 @@ app.get("/movies/get/:id", (req, res) => {
 
 //Create
 
-app.get("/movies/add", (req, res) => {
+app.post("/movies/add", (req, res) => {
   let title = req.query.title;
   let year = parseInt(req.query.year);
   let rating = parseInt(req.query.rating);
@@ -144,7 +144,7 @@ app.get("/movies/add", (req, res) => {
 
 //DELETE
 
-app.get("/movies/delete/:id", (req, res) => {
+app.delete("/movies/delete/:id", (req, res) => {
   const movieId = req.params.id;
 
   const movieIndex = movies.findIndex((movie) => movie.title === movieId);
@@ -162,18 +162,19 @@ app.get("/movies/delete/:id", (req, res) => {
 });
 
 //Update
-app.get("/movies/update/:id", (req, res) => {
+app.put('/movies/update/:id', (req, res) => {
   const { id } = req.params;
   const { title } = req.query;
   const { rating } = req.query;
 
-  const movie = movies.find((movie) => movie.title === id);
+  const movie = movies.find(movie => movie.title === id);
 
   if (!movie) {
+
     res.status(404).send({
       status: 404,
       error: true,
-      message: `the movie ${id} does not exist`,
+      message: `the movie ${id} does not exist`
     });
     return;
   }
@@ -184,10 +185,11 @@ app.get("/movies/update/:id", (req, res) => {
   if (rating) {
     movie.rating = parseInt(rating);
   }
+ 
 
   res.send({
     status: 200,
-    data: movies,
+    data: movies
   });
 });
 
