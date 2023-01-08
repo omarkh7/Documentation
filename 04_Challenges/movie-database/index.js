@@ -119,7 +119,7 @@ app.get("/movies/add", (req, res) => {
         message: "Year is  not made of 4 digits",
       });
     }
-    if (year==='') {
+    if (year==='step') {
       res.status(403).json({
         status: 403,
         error: true,
@@ -141,6 +141,27 @@ app.get("/movies/add", (req, res) => {
     });
   }
 });
+
+//DELETE
+
+app.get('/movies/delete/:id', (req, res) => {
+  const movieId = req.params.id;
+
+  const movieIndex = movies.findIndex(movie => movie.title === movieId);
+
+  if (movieIndex===-1) {
+    return res.status(404).json({
+      status: 404,
+      error: true,
+      message: `The movie ${movieId} does not exist`
+    });
+  }movies.splice(movieIndex, 1);
+
+ res.json(movies)
+
+  
+});
+
 
 app.listen(port, () => {
   console.log("ok");
