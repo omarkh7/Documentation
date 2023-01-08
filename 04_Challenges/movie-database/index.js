@@ -119,7 +119,7 @@ app.get("/movies/add", (req, res) => {
         message: "Year is  not made of 4 digits",
       });
     }
-    if (year==='step') {
+    if (year === "step") {
       res.status(403).json({
         status: 403,
         error: true,
@@ -144,24 +144,52 @@ app.get("/movies/add", (req, res) => {
 
 //DELETE
 
-app.get('/movies/delete/:id', (req, res) => {
+app.get("/movies/delete/:id", (req, res) => {
   const movieId = req.params.id;
 
-  const movieIndex = movies.findIndex(movie => movie.title === movieId);
+  const movieIndex = movies.findIndex((movie) => movie.title === movieId);
 
-  if (movieIndex===-1) {
+  if (movieIndex === -1) {
     return res.status(404).json({
       status: 404,
       error: true,
-      message: `The movie ${movieId} does not exist`
+      message: `The movie ${movieId} does not exist`,
     });
-  }movies.splice(movieIndex, 1);
+  }
+  movies.splice(movieIndex, 1);
 
- res.json(movies)
-
-  
+  res.json(movies);
 });
 
+//Update
+app.get("/movies/update/:id", (req, res) => {
+  const { id } = req.params;
+  const { title } = req.query;
+  const { rating } = req.query;
+
+  const movie = movies.find((movie) => movie.title === id);
+
+  if (!movie) {
+    res.status(404).send({
+      status: 404,
+      error: true,
+      message: `the movie ${id} does not exist`,
+    });
+    return;
+  }
+
+  if (title) {
+    movie.title = title;
+  }
+  if (rating) {
+    movie.rating = parseInt(rating);
+  }
+
+  res.send({
+    status: 200,
+    data: movies,
+  });
+});
 
 app.listen(port, () => {
   console.log("ok");
