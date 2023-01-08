@@ -112,14 +112,14 @@ app.post("/movies/add", (req, res) => {
     if (!rating) {
       rating = 4;
     }
-    if (year < 1000) {
+    if (year < 1000 || year>9999) {
       res.status(403).json({
         status: 403,
         error: true,
         message: "Year is  not made of 4 digits",
       });
     }
-    if (year === "step") {
+    if (year === "") {
       res.status(403).json({
         status: 403,
         error: true,
@@ -162,19 +162,18 @@ app.delete("/movies/delete/:id", (req, res) => {
 });
 
 //Update
-app.put('/movies/update/:id', (req, res) => {
+app.put("/movies/update/:id", (req, res) => {
   const { id } = req.params;
   const { title } = req.query;
   const { rating } = req.query;
 
-  const movie = movies.find(movie => movie.title === id);
+  const movie = movies.find((movie) => movie.title === id);
 
   if (!movie) {
-
     res.status(404).send({
       status: 404,
       error: true,
-      message: `the movie ${id} does not exist`
+      message: `the movie ${id} does not exist`,
     });
     return;
   }
@@ -185,11 +184,10 @@ app.put('/movies/update/:id', (req, res) => {
   if (rating) {
     movie.rating = parseInt(rating);
   }
- 
 
   res.send({
     status: 200,
-    data: movies
+    data: movies,
   });
 });
 
